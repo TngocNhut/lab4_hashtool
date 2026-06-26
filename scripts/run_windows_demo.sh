@@ -133,7 +133,7 @@ out.mkdir(parents=True, exist_ok=True)
 print("[OK] Created MD5 collision sample files")
 PY
 
-cmp -l samples/md5_collision/msg1.bin samples/md5_collision/msg2.bin | head
+cmp -l samples/md5_collision/msg1.bin samples/md5_collision/msg2.bin | head || true
 openssl dgst -md5 samples/md5_collision/msg1.bin samples/md5_collision/msg2.bin
 openssl dgst -sha256 samples/md5_collision/msg1.bin samples/md5_collision/msg2.bin
 
