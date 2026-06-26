@@ -1,0 +1,44 @@
+[
+  {
+    "name": "SHA-256 empty string",
+    "algo": "sha256",
+    "message_hex": "",
+    "outlen": 0,
+    "expected_hex": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  {
+    "name": "SHA-256 abc",
+    "algo": "sha256",
+    "message_hex": "616263",
+    "outlen": 0,
+    "expected_hex": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+  },
+  {
+    "name": "SHA3-256 empty string",
+    "algo": "sha3-256",
+    "message_hex": "",
+    "outlen": 0,
+    "expected_hex": "a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a"
+  },
+  {
+    "name": "SHA3-256 abc",
+    "algo": "sha3-256",
+    "message_hex": "616263",
+    "outlen": 0,
+    "expected_hex": "3a985da74fe225b2045c172d6bd390bd855f086e3e9d525b46bfe24511431532"
+  },
+  {
+    "name": "SHAKE128 abc 32 bytes",
+    "algo": "shake128",
+    "message_hex": "616263",
+    "outlen": 32,
+    "expected_hex": "5881092dd818bf5cf8a3ddb793fbcba74097d5c526a6d35f97b83351940f2cc8"
+  },
+  {
+    "name": "SHAKE256 abc 64 bytes",
+    "algo": "shake256",
+    "message_hex": "616263",
+    "outlen": 64,
+    "expected_hex": "483366601360a8771c6863080cc4114d8db44530f8f1e1ee4f94ea37e78b5739d5a15bef186a5386c75744c0527e1faa9f8726e462a12a4feb06bd8801e751e4"
+  }
+]

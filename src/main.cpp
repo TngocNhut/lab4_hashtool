@@ -1,6 +1,7 @@
 #include "hashtool/encoding.hpp"
 #include "hashtool/file_utils.hpp"
 #include "hashtool/hash_tool.hpp"
+#include "hashtool/kat_runner.hpp"
 
 #include <cryptopp/sha.h>
 #include <cryptopp/sha3.h>
@@ -20,6 +21,7 @@ void print_help() {
         << "  hashtool --help\n"
         << "  hashtool version\n"
         << "  hashtool selftest\n"
+        << "  hashtool kat --vectors vectors/hash_kat.json\n"
         << "  hashtool hash --algo sha256 --in file.bin [--out digest.bin]\n"
         << "  hashtool hash --algo shake256 --outlen 64 --in file.bin [--out digest.bin]\n\n"
         << "Supported algorithms:\n"
@@ -55,6 +57,18 @@ int run_selftest() {
               << hashtool::to_hex(sha256) << "\n";
 
     return 0;
+}
+
+
+int run_kat(int argc, char* argv[]) {
+    const std::string vectors_path = get_arg(argc, argv, "--vectors");
+
+    if (vectors_path.empty()) {
+        std::cerr << "ERROR: kat requires --vectors vectors/hash_kat.json\n";
+        return 1;
+    }
+
+    return hashtool::run_hash_kat_file(vectors_path);
 }
 
 int run_hash(int argc, char* argv[]) {
@@ -134,6 +148,10 @@ int main(int argc, char* argv[]) {
 
         if (command == "selftest") {
             return run_selftest();
+        }
+
+        if (command == "kat") {
+            return run_kat(argc, argv);
         }
 
         if (command == "hash") {
