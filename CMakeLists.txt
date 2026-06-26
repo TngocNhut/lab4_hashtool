@@ -16,6 +16,7 @@ add_executable(hashtool
     src/encoding.cpp
     src/hash_tool.cpp
     src/kat_runner.cpp
+    src/benchmark.cpp
 )
 
 target_include_directories(hashtool

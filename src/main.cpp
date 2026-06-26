@@ -1,4 +1,5 @@
 #include "hashtool/encoding.hpp"
+#include "hashtool/benchmark.hpp"
 #include "hashtool/file_utils.hpp"
 #include "hashtool/hash_tool.hpp"
 #include "hashtool/kat_runner.hpp"
@@ -22,6 +23,7 @@ void print_help() {
         << "  hashtool version\n"
         << "  hashtool selftest\n"
         << "  hashtool kat --vectors vectors/hash_kat.json\n"
+        << "  hashtool bench --out artifacts/windows/benchmark/bench_hash_windows.csv\n"
         << "  hashtool hash --algo sha256 --in file.bin [--out digest.bin]\n"
         << "  hashtool hash --algo shake256 --outlen 64 --in file.bin [--out digest.bin]\n\n"
         << "Supported algorithms:\n"
@@ -59,6 +61,19 @@ int run_selftest() {
     return 0;
 }
 
+
+
+int run_bench(int argc, char* argv[]) {
+    const std::string out_path = get_arg(argc, argv, "--out");
+
+    if (out_path.empty()) {
+        std::cerr << "ERROR: bench requires --out benchmark.csv\n";
+        return 1;
+    }
+
+    hashtool::run_hash_benchmark_csv(out_path);
+    return 0;
+}
 
 int run_kat(int argc, char* argv[]) {
     const std::string vectors_path = get_arg(argc, argv, "--vectors");
@@ -152,6 +167,10 @@ int main(int argc, char* argv[]) {
 
         if (command == "kat") {
             return run_kat(argc, argv);
+        }
+
+        if (command == "bench") {
+            return run_bench(argc, argv);
         }
 
         if (command == "hash") {
