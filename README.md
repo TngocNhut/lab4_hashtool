@@ -3,13 +3,12 @@
 
 
 
-Student: Tran Ngoc Nhat
+Họ tên: Trần Ngọc Nhất
+MSSV: 24162086
 
 
 
-## Scope
-
-
+## Goals
 
 This project implements the hashing suite for Lab 4 and will later include:
 
@@ -31,7 +30,7 @@ This project implements the hashing suite for Lab 4 and will later include:
 
 
 
-## Build on Windows MSYS2 UCRT64
+## Lệnh Build trên Windows MSYS2 UCRT64
 
 
 
